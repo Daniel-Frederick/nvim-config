@@ -17,7 +17,7 @@ vim.opt.backup = false -- No backup files when saving
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir" -- Path to undo file
 vim.opt.undofile = true -- Keep undo history after closing Neovim
 
-vim.opt.hlsearch = false -- Remove Highlighting for searched phrases
+-- vim.opt.hlsearch = false -- Remove Highlighting for searched phrases
 
 -- vim.opt.termguicolors = true
 

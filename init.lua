@@ -9,5 +9,4 @@ vim.lsp.enable("clangd")
 vim.lsp.enable("pyright") -- npm install -g pyright
 
 vim.cmd("colorscheme catppuccin")
--- vim.cmd("colorscheme lunaperche")
 
