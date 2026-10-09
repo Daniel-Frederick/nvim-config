@@ -28,3 +28,5 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50 -- Update idle time triggering
 vim.opt.colorcolumn = "80" -- Bar on the Right ->
 
+vim.opt.ignorecase = true -- Makes '/' case-insensitive
+vim.opt.ignorecase = true -- Makes '/' case-sensitive if you type capitals
