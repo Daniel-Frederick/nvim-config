@@ -29,6 +29,23 @@ return {
             desc = "Live Grep",
         })
 
+        vim.keymap.set("n", "<leader>fw", telescope.grep_string, {
+            desc = "Find Word",
+        })
+
+        vim.keymap.set("v", "<leader>fw", function()
+            local saved_reg = vim.fn.getreg("v")
+            vim.cmd('normal! "vy')
+            local selection = vim.fn.getreg("v")
+            vim.fn.setreg("v", saved_reg)
+
+            telescope.grep_string({
+                search = selection,
+            })
+        end, {
+        desc = "Find Word",
+    })
+
         vim.keymap.set("n", "<leader>fb", telescope.buffers, {
             desc = "Find Buffers",
         })

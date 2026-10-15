@@ -1,6 +1,7 @@
 -- Config & Plugins
 require("config.options")
 require("config.keymaps")
+require("config.keymaps_dap")
 require("config.autocmds")
 require("config.lazy") -- Always keep this last 
 

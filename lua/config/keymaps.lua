@@ -26,59 +26,33 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 -- vim.keymap.set("n", "<M-H>", "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>")
 
 -- Quickfix navigation
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>ql", "<cmd>lclose<CR>", {
+    desc = "Close Location List",
+})
+
+-- c/c++
+vim.keymap.set("n", "<leader>th", function()
+    vim.lsp.buf_request(0, "textDocument/switchSourceHeader", {
+        uri = vim.uri_from_bufnr(0),
+    }, function(err, result)
+        if err then
+            vim.notify(err.message, vim.log.levels.WARN)
+            return
+        end
+
+        if result then
+            vim.cmd.edit(vim.uri_to_fname(result))
+        else
+            vim.notify("No corresponding source/header file found", vim.log.levels.INFO)
+        end
+    end)
+end, { desc = "Switch Source/Header" })
 
 -- Debugging
--- LSP Error showing
-vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float) -- Showing single msg
-vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist) -- Showing All msgs
+vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float) -- Showing single error msg
+vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist) -- Showing All error msgs
 
--- DAP
-vim.keymap.set("n", "<F9>", function()
-	require("dap").continue()
-end, { desc = "DAP Continue" })
-
-vim.keymap.set("n", "<F10>", function()
-	require("dap").step_over()
-end, { desc = "DAP Step Over" })
-
-vim.keymap.set("n", "<F11>", function()
-	require("dap").step_into()
-end, { desc = "DAP Step Into" })
-
-vim.keymap.set("n", "<F12>", function()
-	require("dap").step_out()
-end, { desc = "DAP Step Out" })
-
-vim.keymap.set("n", "<leader>b", function()
-	require("dap").toggle_breakpoint()
-end, { desc = "DAP Toggle Breakpoint" })
-
-vim.keymap.set("n", "<leader>B", function()
-	require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, { desc = "DAP Conditional Breakpoint" })
-
-vim.keymap.set("n", "<leader>dt", function()
-	require("dap").terminate()
-end, { desc = "DAP Terminate" })
-
-vim.keymap.set("n", "<leader>dr", function()
-	require("dap").restart()
-end, { desc = "DAP Restart" })
-
-vim.keymap.set("n", "<leader>de", function()
-	require("dap").repl.open()
-end, { desc = "DAP REPL" })
-
-vim.keymap.set("n", "<leader>dc", function()
-	require("dap").run_to_cursor()
-end, { desc = "DAP Run to Cursor" })
-
-vim.keymap.set("n", "<leader>dv", function()
-	require("dap").evaluate()
-end, { desc = "DAP Evaluate" })
