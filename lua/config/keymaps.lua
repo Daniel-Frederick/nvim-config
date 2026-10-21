@@ -29,6 +29,10 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
     desc = "Go to Definition",
 })
 
+-- Move lines up and down
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==')
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==')
+
 -- Quickfix navigation
 vim.keymap.set("n", "<C-j>", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<C-k>", "<cmd>lprev<CR>zz")
