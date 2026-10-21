@@ -17,6 +17,14 @@ return {
         local dap = require("dap")
         require("config.keymaps_dap")(dap)
 
+        -- Show variable values inline while debugging
+        require("nvim-dap-virtual-text").setup({
+            enabled = true,
+            enabled_commands = true,
+            highlight_changed_variables = true,
+            virt_text_pos = "inline",
+        })
+
         local telescope = require("telescope")
         telescope.load_extension("dap")
         local dap_telescope = telescope.extensions.dap
@@ -32,7 +40,7 @@ return {
         vim.keymap.set("n", "<leader>ds", function()
             dap.repl.open()
         end, {
-        desc = "Open DAP REPL",
-    })
-end,
+            desc = "Open DAP REPL",
+        })
+    end,
 }

@@ -12,3 +12,4 @@
 2. Clone repo: `git clone https://github.com/Daniel-Frederick/nvim-config ~/.config/nvim`
 
 3. lazy.nvim should manually install the plugins
+

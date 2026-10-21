@@ -46,8 +46,8 @@ return function(dap)
     })
 
     vim.keymap.set("n", "<leader>dv", function()
-        dap.evaluate()
+        dap.eval()
     end, {
-        desc = "DAP Evaluate",
+        desc = "DAP Evaluate Expression",
     })
 end

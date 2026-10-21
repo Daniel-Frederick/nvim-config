@@ -25,6 +25,10 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 -- vim.keymap.set("n", "<M-h>", "<cmd>silent !tmux-sessionizer -s 0 --vsplit<CR>")
 -- vim.keymap.set("n", "<M-H>", "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>")
 
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+    desc = "Go to Definition",
+})
+
 -- Quickfix navigation
 vim.keymap.set("n", "<C-j>", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<C-k>", "<cmd>lprev<CR>zz")
